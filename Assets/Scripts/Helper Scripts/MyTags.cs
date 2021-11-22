@@ -14,6 +14,11 @@ public class MyTags : MonoBehaviour
   public static string DEFEND_ANIMATION = "Defend";
   public static string DEAD_ANIMATION = "Dead";
 
+  // FOX ANIMATIONS
+  public static string STANDUP_ANIMATION = "Standup";
+  public static string SIT_ANIMATION = "Sit";
+  public static string SITTING_ANIMATION = "Sitting";
+
   // DOG TRIGGERS
   public static string RUN_TRIGGER = "Run";
   public static string ATTACK_1_RUNNING_TRIGGER = "AttackRunning1";
@@ -24,6 +29,12 @@ public class MyTags : MonoBehaviour
   public static string ATTACK_2_TRIGGER = "Attack2";
   public static string DEFEND_TRIGGER = "Defend";
   public static string DEAD_TRIGGER = "Dead";
+
+  // FOX TRIGGERS
+  public static string STANDUP_TRIGGER = "Standup";
+  public static string SIT_TRIGGER = "Sit";
+  public static string STOP_RUN_TRIGGER = "StopRun";
+  public static string STOP_ATTACK_TRIGGER = "StopAttack";
 
   // TAGS
   public static string PLAYER_TAG = "Player";

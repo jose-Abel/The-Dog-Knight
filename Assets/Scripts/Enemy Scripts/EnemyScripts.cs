@@ -53,7 +53,7 @@ public class EnemyScripts : MonoBehaviour
             }
             anim.SetTrigger(MyTags.ATTACK_1_ANIMATION);
 
-            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));            
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         }
 
         else {
