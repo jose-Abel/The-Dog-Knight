@@ -9,7 +9,9 @@ public class DogScript : MonoBehaviour
   public Transform groundCheck;
   public LayerMask groundLayer;
   bool isPlayerMoving;
-  float playerSpeed = 0.05f;
+
+  [SerializeField]
+  float playerSpeed = 0.1f;
 
   float rotationSpeed = 4f;
 
@@ -33,6 +35,7 @@ public class DogScript : MonoBehaviour
   {
     PlayerMoveKeyboard();
     AnimatePlayer();
+    Attack();
   }
 
   void FixedUpdate()
@@ -107,6 +110,38 @@ public class DogScript : MonoBehaviour
         {
           isPlayerMoving = false;
           anim.SetTrigger(MyTags.STOP_TRIGGER);
+        }
+      }
+    }
+  }
+
+  void Attack()
+  {
+    if (Input.GetKeyDown(KeyCode.LeftControl))
+    {
+      if (!anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_ANIMATION) || !anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_2_ANIMATION))
+      {
+        if (!isPlayerMoving)
+        {
+          anim.SetTrigger(MyTags.ATTACK_1_TRIGGER);
+        }
+        else
+        {
+          anim.SetTrigger(MyTags.ATTACK_1_RUNNING_TRIGGER);
+        }
+      }
+    }
+    else if (Input.GetKeyDown(KeyCode.LeftShift))
+    {
+      if (!anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_ANIMATION) || !anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_2_ANIMATION))
+      {
+        if (!isPlayerMoving)
+        {
+          anim.SetTrigger(MyTags.ATTACK_2_TRIGGER);
+        }
+        else
+        {
+          anim.SetTrigger(MyTags.ATTACK_2_RUNNING_TRIGGER);
         }
       }
     }
