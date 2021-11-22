@@ -8,9 +8,9 @@ public class DogScript : MonoBehaviour
   private Animator anim;
   public Transform groundCheck;
   public LayerMask groundLayer;
+  public GameObject damagePoint;
   bool isPlayerMoving;
 
-  [SerializeField]
   float playerSpeed = 0.1f;
 
   float rotationSpeed = 4f;
@@ -146,4 +146,12 @@ public class DogScript : MonoBehaviour
       }
     }
   }
+
+    void ActivateDamagePoint() {
+        damagePoint.SetActive(true);
+    }
+
+    void DeactivateDamagePoint() {
+        damagePoint.SetActive(false);
+    }
 }

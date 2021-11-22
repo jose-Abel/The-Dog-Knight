@@ -8,11 +8,14 @@ public class FoxScript : MonoBehaviour
     private GameObject enemy;
     private Rigidbody myBody;
     private Animator anim;
+    public GameObject[] damagePointsPads;
+    public GameObject damagePointTail;
 
-    private float fox_Speed = 10f;
+
+    private float fox_Speed = 4f;
     private float fox_Watch_Treshold = 8f;
     private float fox_Watch_Enemy_Treshold = 15f;
-    private float fox_Attack_Treshold = 3f;
+    private float fox_Attack_Treshold = 2f;
     private bool attack_Mode = false;
 
     void Awake() {
@@ -25,13 +28,12 @@ public class FoxScript : MonoBehaviour
       anim = GetComponent<Animator>();
     }
 
-    void Update() {
+    void FixedUpdate() {
       if (!attack_Mode) {
             AI();
       }
       AttackAI();
       PressingKeys();
-      Debug.Log(attack_Mode);
     }
 
     void AI() {
@@ -120,4 +122,26 @@ public class FoxScript : MonoBehaviour
         }
       }
     }
+
+    void ActivatePadsDamagePoint() {
+      for (var i = 0; i <  damagePointsPads.Length; i++) {
+        
+        damagePointsPads[i].SetActive(true);
+      }
+    }
+
+    void DeactivatePadsDamagePoint() {
+      for (var i = 0; i <  damagePointsPads.Length; i++) {
+        
+        damagePointsPads[i].SetActive(false);
+      }
+    }
+
+    void ActivateTailDamagePoint() {
+      damagePointTail.SetActive(true);
+    }
+
+    void DeactivateTailDamagePoint() {
+      damagePointTail.SetActive(false);
+    }    
 }
