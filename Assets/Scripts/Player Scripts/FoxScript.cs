@@ -8,7 +8,7 @@ public class FoxScript : MonoBehaviour
     private GameObject enemy;
     private Rigidbody myBody;
     private Animator anim;
-    public GameObject[] damagePointsPads;
+    public GameObject damagePointsPads;
     public GameObject damagePointTail;
 
 
@@ -123,18 +123,12 @@ public class FoxScript : MonoBehaviour
       }
     }
 
-    void ActivatePadsDamagePoint() {
-      for (var i = 0; i <  damagePointsPads.Length; i++) {
-        
-        damagePointsPads[i].SetActive(true);
-      }
+    void ActivatePadsDamagePoint() {        
+      damagePointsPads.SetActive(true);
     }
 
-    void DeactivatePadsDamagePoint() {
-      for (var i = 0; i <  damagePointsPads.Length; i++) {
-        
-        damagePointsPads[i].SetActive(false);
-      }
+    void DeactivatePadsDamagePoint() {        
+      damagePointsPads.SetActive(false);
     }
 
     void ActivateTailDamagePoint() {

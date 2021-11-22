@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyScripts : MonoBehaviour
 {
-    private GameObject player;
+    private GameObject[] players;
     private Rigidbody myBody;
     private Animator anim;
 
@@ -15,7 +15,7 @@ public class EnemyScripts : MonoBehaviour
     public GameObject damagePoint;
 
     void Awake() {
-        player = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG);
+        players = GameObject.FindGameObjectsWithTag(MyTags.PLAYER_TAG);
 
         myBody = GetComponent<Rigidbody>();
 
@@ -27,15 +27,21 @@ public class EnemyScripts : MonoBehaviour
     }
 
     void EnemyAI() {
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 directionToDog = players[0].transform.position - transform.position;
 
-        float distance = direction.magnitude;
+        Vector3 directionToFox = players[1].transform.position - transform.position;
 
-        direction.Normalize();
+        float distanceFromDog = directionToDog.magnitude;
 
-        Vector3 velocity = direction * enemy_Speed;
+        float distanceFromFox = directionToFox.magnitude;
 
-        if (distance > enemy_Attack_Treshold && distance < enemy_Watch_Treshold) {
+        directionToDog.Normalize();
+
+        directionToFox.Normalize();
+
+        Vector3 velocity = directionToDog * enemy_Speed;
+
+        if (distanceFromDog > enemy_Attack_Treshold && distanceFromDog < enemy_Watch_Treshold) {
 
             myBody.velocity = new Vector3(velocity.x, myBody.velocity.y, velocity.z);
 
@@ -45,17 +51,28 @@ public class EnemyScripts : MonoBehaviour
 
             anim.SetTrigger(MyTags.RUN_TRIGGER);
 
-            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            transform.LookAt(new Vector3(players[0].transform.position.x, transform.position.y, players[0].transform.position.z));
         }
 
-        else if (distance < enemy_Attack_Treshold) {
+        else if (distanceFromDog < enemy_Attack_Treshold) {
 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION)) {
                 anim.SetTrigger(MyTags.STOP_TRIGGER);
             }
             anim.SetTrigger(MyTags.ATTACK_1_ANIMATION);
 
-            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            transform.LookAt(new Vector3(players[0].transform.position.x, transform.position.y, players[0].transform.position.z));
+
+        }
+        else if (distanceFromDog > enemy_Attack_Treshold && distanceFromFox < enemy_Attack_Treshold) {
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION)) {
+                anim.SetTrigger(MyTags.STOP_TRIGGER);
+            }
+
+            anim.SetTrigger(MyTags.ATTACK_1_ANIMATION);
+
+            transform.LookAt(new Vector3(players[1].transform.position.x, transform.position.y, players[1].transform.position.z));
         }
 
         else {

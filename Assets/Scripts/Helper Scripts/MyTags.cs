@@ -36,6 +36,10 @@ public class MyTags : MonoBehaviour
   public static string STOP_RUN_TRIGGER = "StopRun";
   public static string STOP_ATTACK_TRIGGER = "StopAttack";
 
+  // ENEMY TRIGGERS
+  public static string DAMAGE_TRIGGER = "Damage";
+
+
   // TAGS
   public static string PLAYER_TAG = "Player";
   public static string ENEMY_TAG = "Enemy";

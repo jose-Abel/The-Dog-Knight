@@ -14,7 +14,8 @@ public class PlayerDamage : MonoBehaviour
 
         if (hits.Length > 0) {
             if (hits[0].gameObject.tag == MyTags.ENEMY_TAG) {
-                Debug.Log("COLLIDED WITH ENEMY");
+
+                hits[0].gameObject.GetComponent<EnemyHealth>().ApplyDamage(damageAmount);
             }
         }
     }
