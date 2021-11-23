@@ -5,6 +5,7 @@ using UnityEngine;
 public class MyTags : MonoBehaviour
 {
   // DOG ANIMATIONS
+  public static string IDLE = "Idle";
   public static string RUN_ANIMATION = "Run";
   public static string ATTACK_1_RUNNING_ANIMATION = "AttackRunning1";
   public static string ATTACK_2_RUNNING_ANIMATION = "AttackRunning2";
@@ -19,6 +20,9 @@ public class MyTags : MonoBehaviour
   public static string SIT_ANIMATION = "Sit";
   public static string SITTING_ANIMATION = "Sitting";
 
+  // ENEMY ANIMATIONS
+  public static string VICTORY_ANIMATION = "Victory";
+
   // DOG TRIGGERS
   public static string RUN_TRIGGER = "Run";
   public static string ATTACK_1_RUNNING_TRIGGER = "AttackRunning1";
@@ -28,6 +32,7 @@ public class MyTags : MonoBehaviour
   public static string ATTACK_1_TRIGGER = "Attack1";
   public static string ATTACK_2_TRIGGER = "Attack2";
   public static string DEFEND_TRIGGER = "Defend";
+  public static string STOP_DEFEND_TRIGGER = "StopDefend";
   public static string DEAD_TRIGGER = "Dead";
 
   // FOX TRIGGERS
@@ -38,6 +43,7 @@ public class MyTags : MonoBehaviour
 
   // ENEMY TRIGGERS
   public static string DAMAGE_TRIGGER = "Damage";
+  public static string VICTORY_TRIGGER = "Victory";
 
 
   // TAGS

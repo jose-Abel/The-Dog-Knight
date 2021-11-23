@@ -21,23 +21,25 @@ public class DogHealth : MonoBehaviour
     }
 
     public void ApplyDamage(int damageAmount) {
+      if (!dogScript.isDefending) {
         health -= damageAmount;
+      }
 
-        if (health < 0) {
-            health = 0;
-        }
+      if (health < 0) {
+        health = 0;
+      }
 
-        // DISPLAY THE HEALTH VALUE
-        GameplayController.instance.DisplayDogHealth(health);
+      // DISPLAY THE HEALTH VALUE
+      GameplayController.instance.DisplayDogHealth(health);
 
-        if (health == 0) {
-            dogScript.enabled = false;
+      if (health == 0) {
+        dogScript.enabled = false;
 
-            anim.Play(MyTags.DEAD_TRIGGER);
+        anim.Play(MyTags.DEAD_TRIGGER);
 
-            GameplayController.instance.isDogAlive = false;
+        GameplayController.instance.isDogAlive = false;
 
-            // GAMEOVER PANEL
-        }
+        // GAMEOVER PANEL
+      }
     }
 }

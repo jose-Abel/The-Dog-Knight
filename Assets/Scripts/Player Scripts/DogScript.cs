@@ -9,6 +9,7 @@ public class DogScript : MonoBehaviour
   public Transform groundCheck;
   public LayerMask groundLayer;
   public GameObject damagePoint;
+  public bool isDefending;
   bool isPlayerMoving;
 
   float playerSpeed = 0.1f;
@@ -33,14 +34,24 @@ public class DogScript : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    PlayerMoveKeyboard();
+    if (!isDefending) {
+      PlayerMoveKeyboard();
+      MoveAndRotate();
+    }
+    // MoveAndRotate();
+    // PlayerMoveKeyboard();
     AnimatePlayer();
     Attack();
+    Defend();
   }
 
   void FixedUpdate()
   {
-    MoveAndRotate();
+    // MoveAndRotate();
+    // PlayerMoveKeyboard();
+    // AnimatePlayer();
+    // Attack();
+    // Defend();
   }
 
   void PlayerMoveKeyboard()
@@ -94,7 +105,7 @@ public class DogScript : MonoBehaviour
     {
       if (!isPlayerMoving)
       {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_RUNNING_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_2_RUNNING_ANIMATION))
         {
           isPlayerMoving = true;
 
@@ -106,7 +117,7 @@ public class DogScript : MonoBehaviour
     {
       if (isPlayerMoving)
       {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_RUNNING_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_2_RUNNING_ANIMATION))
         {
           isPlayerMoving = false;
           anim.SetTrigger(MyTags.STOP_TRIGGER);
@@ -124,9 +135,8 @@ public class DogScript : MonoBehaviour
         if (!isPlayerMoving)
         {
           anim.SetTrigger(MyTags.ATTACK_1_TRIGGER);
-        }
-        else
-        {
+        } 
+        else {
           anim.SetTrigger(MyTags.ATTACK_1_RUNNING_TRIGGER);
         }
       }
@@ -139,19 +149,36 @@ public class DogScript : MonoBehaviour
         {
           anim.SetTrigger(MyTags.ATTACK_2_TRIGGER);
         }
-        else
-        {
+        else {
           anim.SetTrigger(MyTags.ATTACK_2_RUNNING_TRIGGER);
         }
       }
     }
   }
 
-    void ActivateDamagePoint() {
-        damagePoint.SetActive(true);
+  void Defend() {
+    if (Input.GetKeyDown(KeyCode.Z)) {
+      if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_2_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_RUNNING_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_2_RUNNING_ANIMATION)) {
+        
+        anim.SetTrigger(MyTags.STOP_TRIGGER);
+      }
+
+      isDefending = true;
+      anim.SetTrigger(MyTags.DEFEND_TRIGGER);
     }
 
-    void DeactivateDamagePoint() {
-        damagePoint.SetActive(false);
+    if (Input.GetKeyUp(KeyCode.Z)) {
+
+      isDefending = false;
+      anim.SetTrigger(MyTags.STOP_DEFEND_TRIGGER);
     }
+  }
+
+  void ActivateDamagePoint() {
+      damagePoint.SetActive(true);
+  }
+
+  void DeactivateDamagePoint() {
+      damagePoint.SetActive(false);
+  }
 }

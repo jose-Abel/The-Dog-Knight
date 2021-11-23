@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     private EnemyScripts enemyScript;
 
     private Animator anim;
-    // Start is called before the first frame update
+
     void Awake()
     {
         enemyScript = GetComponent<EnemyScripts>();
@@ -30,10 +31,6 @@ public class EnemyHealth : MonoBehaviour
             enemyScript.enabled = false;
 
             anim.SetTrigger(MyTags.DEAD_TRIGGER);
-
-            GameplayController.instance.scoreIncremented();
-
-            GameplayController.instance.CountDownEnemies();
 
             Invoke("DeactivateEnemy", 3f);
         }

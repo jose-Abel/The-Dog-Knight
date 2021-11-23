@@ -7,11 +7,7 @@ public class GameplayController : MonoBehaviour
 {
     public static GameplayController instance;
 
-    private Text healthDogText, healthFoxText, enemyCounterText, scoreText;
-
-    private int score = 0;
-
-    private float enemyCounter = 10f;
+    private Text healthDogText, healthFoxText;
 
     [HideInInspector]
     public bool isDogAlive;
@@ -29,10 +25,6 @@ public class GameplayController : MonoBehaviour
         healthDogText = GameObject.Find("DogHealth").GetComponent<Text>();
 
         healthFoxText = GameObject.Find("FoxHealth").GetComponent<Text>();
-
-        enemyCounterText = GameObject.Find("EnemyCounter").GetComponent<Text>();
-
-        scoreText.text = "Score: " + score;
     }
 
     void Start() {
@@ -48,23 +40,11 @@ public class GameplayController : MonoBehaviour
         }
     }
 
-    public void scoreIncremented() {
-        score++;
-        
-        scoreText.text = "Score: " + score;
-    }
-
     public void DisplayDogHealth(int health) {
-        healthDogText.text = "Health: " + health;
+        healthDogText.text = "Dog Health: " + health;
     }
 
     public void DisplayFoxHealth(int health) {
-        healthFoxText.text = "Health: " + health;
-    }
-
-    public void CountDownEnemies() {
-        enemyCounter--;
-
-        enemyCounterText.text = "Enemy Counter: " + enemyCounter;
+        healthFoxText.text = "Fox Health: " + health;
     }
 }

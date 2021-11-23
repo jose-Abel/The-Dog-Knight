@@ -6,6 +6,7 @@ public class PlayerDamage : MonoBehaviour
 {
     public int damageAmount = 10;
     public LayerMask enemyLayer;
+    public EnemyHealth enemyHealthScript;
 
     // Update is called once per frame
     void Update()
@@ -14,6 +15,7 @@ public class PlayerDamage : MonoBehaviour
 
         if (hits.Length > 0) {
             if (hits[0].gameObject.tag == MyTags.ENEMY_TAG) {
+                enemyHealthScript = hits[0].GetComponent<EnemyHealth>();
 
                 hits[0].gameObject.GetComponent<EnemyHealth>().ApplyDamage(damageAmount);
 
