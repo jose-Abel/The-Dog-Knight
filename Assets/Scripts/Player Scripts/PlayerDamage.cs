@@ -16,6 +16,8 @@ public class PlayerDamage : MonoBehaviour
             if (hits[0].gameObject.tag == MyTags.ENEMY_TAG) {
 
                 hits[0].gameObject.GetComponent<EnemyHealth>().ApplyDamage(damageAmount);
+
+                SoundManager.instance.PlayDamageSound();
             }
         }
     }

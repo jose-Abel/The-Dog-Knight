@@ -36,6 +36,8 @@ public class FoxHealth : MonoBehaviour
                 playerDamage.enabled = false;
             }
 
+            GameplayController.instance.isFoxAlive = false;
+
             foxScript.enabled = false;
         }
     }

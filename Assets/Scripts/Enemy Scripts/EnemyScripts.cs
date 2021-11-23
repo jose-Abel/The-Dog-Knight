@@ -23,7 +23,15 @@ public class EnemyScripts : MonoBehaviour
     }
 
     void FixedUpdate() {
-        EnemyAI();
+        if(GameplayController.instance.isDogAlive) {
+            EnemyAI();
+        }
+        else {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.ATTACK_1_ANIMATION)) {
+
+                anim.SetTrigger(MyTags.STOP_TRIGGER);
+            }
+        }
     }
 
     void EnemyAI() {
@@ -64,7 +72,7 @@ public class EnemyScripts : MonoBehaviour
             transform.LookAt(new Vector3(players[0].transform.position.x, transform.position.y, players[0].transform.position.z));
 
         }
-        else if (distanceFromDog > enemy_Attack_Treshold && distanceFromFox < enemy_Attack_Treshold) {
+        else if (distanceFromDog > enemy_Attack_Treshold && distanceFromFox < enemy_Attack_Treshold && GameplayController.instance.isFoxAlive) {
 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.RUN_ANIMATION)) {
                 anim.SetTrigger(MyTags.STOP_TRIGGER);

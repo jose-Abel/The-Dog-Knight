@@ -16,6 +16,10 @@ public class DogHealth : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void Start() {
+        GameplayController.instance.DisplayHealth(health);
+    }
+
     public void ApplyDamage(int damageAmount) {
         health -= damageAmount;
 
@@ -24,11 +28,16 @@ public class DogHealth : MonoBehaviour
         }
 
         // DISPLAY THE HEALTH VALUE
+        GameplayController.instance.DisplayHealth(health);
 
         if (health == 0) {
             dogScript.enabled = false;
 
             anim.Play(MyTags.DEAD_TRIGGER);
+
+            GameplayController.instance.isDogAlive = false;
+
+            // GAMEOVER PANEL
         }
     }
 }
