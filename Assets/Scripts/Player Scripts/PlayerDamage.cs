@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
-    public int damageAmount = 2;
+    public int damageAmount = 10;
     public LayerMask enemyLayer;
 
     // Update is called once per frame
@@ -17,7 +17,7 @@ public class PlayerDamage : MonoBehaviour
 
                 hits[0].gameObject.GetComponent<EnemyHealth>().ApplyDamage(damageAmount);
 
-                SoundManager.instance.PlayDamageSound();
+                // SoundManager.instance.PlayDamageSound();
             }
         }
     }

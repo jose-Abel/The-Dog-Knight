@@ -7,9 +7,11 @@ public class GameplayController : MonoBehaviour
 {
     public static GameplayController instance;
 
-    private Text healthText, timerText, scoreText;
+    private Text healthDogText, healthFoxText, enemyCounterText, scoreText;
 
-    private int score;
+    private int score = 0;
+
+    private float enemyCounter = 10f;
 
     [HideInInspector]
     public bool isDogAlive;
@@ -17,25 +19,25 @@ public class GameplayController : MonoBehaviour
     [HideInInspector]
     public bool isFoxAlive;
 
-    public float timerTime = 99f;
     
     void Awake()
     {
         MakeInstance();
 
-        healthText = GameObject.Find("Health Text").GetComponent<Text>();
+        scoreText = GameObject.Find("Score").GetComponent<Text>();
 
-        timerText = GameObject.Find("Timer Text").GetComponent<Text>();
+        healthDogText = GameObject.Find("DogHealth").GetComponent<Text>();
+
+        healthFoxText = GameObject.Find("FoxHealth").GetComponent<Text>();
+
+        enemyCounterText = GameObject.Find("EnemyCounter").GetComponent<Text>();
 
         scoreText.text = "Score: " + score;
     }
 
     void Start() {
         isDogAlive = true;
-    }
-
-    void Update() {
-        CountdownTimer();
+        isFoxAlive = true;
     }
 
     void MakeInstance() {
@@ -52,13 +54,17 @@ public class GameplayController : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
-    public void DisplayHealth(int health) {
-        healthText.text = "Health: " + health;
+    public void DisplayDogHealth(int health) {
+        healthDogText.text = "Health: " + health;
     }
 
-    void CountdownTimer() {
-        timerTime -= Time.deltaTime;
+    public void DisplayFoxHealth(int health) {
+        healthFoxText.text = "Health: " + health;
+    }
 
-        timerText.text = "Time: " + timerTime.ToString("F0");
+    public void CountDownEnemies() {
+        enemyCounter--;
+
+        enemyCounterText.text = "Enemy Counter: " + enemyCounter;
     }
 }

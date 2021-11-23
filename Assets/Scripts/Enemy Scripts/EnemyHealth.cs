@@ -31,6 +31,10 @@ public class EnemyHealth : MonoBehaviour
 
             anim.SetTrigger(MyTags.DEAD_TRIGGER);
 
+            GameplayController.instance.scoreIncremented();
+
+            GameplayController.instance.CountDownEnemies();
+
             Invoke("DeactivateEnemy", 3f);
         }
     }

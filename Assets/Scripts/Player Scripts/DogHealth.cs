@@ -17,7 +17,7 @@ public class DogHealth : MonoBehaviour
     }
 
     void Start() {
-        GameplayController.instance.DisplayHealth(health);
+        GameplayController.instance.DisplayDogHealth(health);
     }
 
     public void ApplyDamage(int damageAmount) {
@@ -28,7 +28,7 @@ public class DogHealth : MonoBehaviour
         }
 
         // DISPLAY THE HEALTH VALUE
-        GameplayController.instance.DisplayHealth(health);
+        GameplayController.instance.DisplayDogHealth(health);
 
         if (health == 0) {
             dogScript.enabled = false;

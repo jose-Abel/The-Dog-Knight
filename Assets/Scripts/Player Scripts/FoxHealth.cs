@@ -19,6 +19,10 @@ public class FoxHealth : MonoBehaviour
         playerDamageScripts = GetComponents<PlayerDamage>();
     }
 
+    void Start() {
+        GameplayController.instance.DisplayFoxHealth(health);
+    }
+
     public void ApplyDamage(int damageAmount) {
         health -= damageAmount;
 
@@ -27,6 +31,7 @@ public class FoxHealth : MonoBehaviour
         }
 
         // DISPLAY THE HEALTH VALUE
+        GameplayController.instance.DisplayFoxHealth(health);
 
         if (health == 0) {
             anim.Play(MyTags.DEAD_TRIGGER);
