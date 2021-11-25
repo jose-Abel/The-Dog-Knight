@@ -38,20 +38,9 @@ public class DogScript : MonoBehaviour
       PlayerMoveKeyboard();
       MoveAndRotate();
     }
-    // MoveAndRotate();
-    // PlayerMoveKeyboard();
     AnimatePlayer();
     Attack();
     Defend();
-  }
-
-  void FixedUpdate()
-  {
-    // MoveAndRotate();
-    // PlayerMoveKeyboard();
-    // AnimatePlayer();
-    // Attack();
-    // Defend();
   }
 
   void PlayerMoveKeyboard()

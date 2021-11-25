@@ -18,7 +18,6 @@ public class MyTags : MonoBehaviour
   // FOX ANIMATIONS
   public static string STANDUP_ANIMATION = "Standup";
   public static string SIT_ANIMATION = "Sit";
-  public static string SITTING_ANIMATION = "Sitting";
 
   // ENEMY ANIMATIONS
   public static string VICTORY_ANIMATION = "Victory";

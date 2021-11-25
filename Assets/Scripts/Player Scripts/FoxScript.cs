@@ -11,9 +11,8 @@ public class FoxScript : MonoBehaviour
     public GameObject damagePointsPads;
     public GameObject damagePointTail;
 
-
     private float fox_Speed = 4f;
-    private float fox_Watch_Treshold = 8f;
+    private float fox_Watch_Treshold = 3f;
     private float fox_Watch_Enemy_Treshold = 15f;
     private float fox_Attack_Treshold = 2f;
     private bool attack_Mode = false;
@@ -69,7 +68,7 @@ public class FoxScript : MonoBehaviour
     void AttackAI() {
       if (attack_Mode) {
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.SITTING_ANIMATION) || anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.SIT_ANIMATION)) {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(MyTags.SIT_ANIMATION)) {
         
           anim.SetTrigger(MyTags.STANDUP_TRIGGER);
         

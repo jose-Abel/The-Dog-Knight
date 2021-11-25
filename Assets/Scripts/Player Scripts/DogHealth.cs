@@ -40,6 +40,7 @@ public class DogHealth : MonoBehaviour
         GameplayController.instance.isDogAlive = false;
 
         // GAMEOVER PANEL
+        GameplayController.instance.GameOver();
       }
     }
 }
