@@ -1,6 +1,6 @@
 # The Dog Knight
 
-3D Infinite Runner Game build with the Unity Game Engine and C# Programming Language.
+3D Adventure Game build with the Unity Game Engine and C# Programming Language.
 
 ![screenshot](./screenshot.png)
 ![screenshot](./screenshot2.png)
